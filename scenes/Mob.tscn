@@ -14,6 +14,11 @@ height = 24.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "swim",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 6 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "walk",
@@ -23,29 +28,20 @@ animations = [ {
 "loop": true,
 "name": "fly",
 "speed": 3.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "swim",
-"speed": 5.0
 } ]
 
-[node name="MobNode" type="Node2D"]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="MobNode" type="RigidBody2D" groups=["mobs"]]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource( 7 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="RigidBody2D"]
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="RigidBody2D"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 2 )
 animation = "walk"
-
-[connection signal="screen_exited" from="RigidBody2D/VisibilityNotifier2D" to="RigidBody2D" method="_on_VisibilityNotifier2D_screen_exited"]
